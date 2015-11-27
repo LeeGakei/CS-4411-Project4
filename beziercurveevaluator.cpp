@@ -1,5 +1,6 @@
 #include "BezierCurveEvaluator.h"
 #include <assert.h>
+#include "vec.h"
 
 void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 	std::vector<Point>& ptvEvaluatedCurvePts,
@@ -8,26 +9,56 @@ void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 {
 	int iCtrlPtCount = ptvCtrlPts.size();
 
+	std::cout << "BezierCurveEvaluator::evaluateCurve\n";
+
 	//ptvEvaluatedCurvePts.assign(ptvCtrlPts.begin(), ptvCtrlPts.end());
 	ptvEvaluatedCurvePts.clear();
 
 	if (iCtrlPtCount >= 4){
-		for (int i = 0; iCtrlPtCount - (i + 1)>=3; i += 3){
+		for (int i = 0; iCtrlPtCount - (i+1) >=3; i += 3){
 			// de Castaljau’s algorithm
 			displayBezier(ptvCtrlPts, ptvEvaluatedCurvePts, i);
 		}
 	}
 }
 
+
+float v0Tov1dist, v1Tov2dist, v2Tov3dist, v0Tov3dist, heightDiff, standardValue;
 void BezierCurveEvaluator::displayBezier(const std::vector<Point>& ptvCtrlPts, std::vector<Point>& ptvEvaluatedCurvePts, int sIndex) const{
 	//check for flatness
-	float heightDiff = abs(ptvCtrlPts[sIndex].y - ptvCtrlPts[sIndex + 1].y) +
+	//by distance
+	 v0Tov1dist = findDistance(ptvCtrlPts[sIndex], ptvCtrlPts[sIndex + 1]);
+	 v1Tov2dist = findDistance(ptvCtrlPts[sIndex + 1], ptvCtrlPts[sIndex + 2]);
+	 v2Tov3dist = findDistance(ptvCtrlPts[sIndex + 2], ptvCtrlPts[sIndex + 3]);
+	 v0Tov3dist = findDistance(ptvCtrlPts[sIndex], ptvCtrlPts[sIndex + 3]);
+
+	 if (v0Tov3dist == 0){
+		 return;
+	 }
+
+	 float heightDiff = (abs(v0Tov1dist) + abs(v1Tov2dist) + abs(v2Tov3dist)) / abs(v0Tov3dist);
+
+	 
+
+	 std::cout << heightDiff << '\n';
+
+	//std::cout << "heightDiff" << heightDiff << '\n';
+	
+	//by height diff
+	/*float heightDiff = abs(ptvCtrlPts[sIndex].y - ptvCtrlPts[sIndex + 1].y) +
 		abs(ptvCtrlPts[sIndex + 1].y - ptvCtrlPts[sIndex + 2].y) +
 		abs(ptvCtrlPts[sIndex + 2].y - ptvCtrlPts[sIndex + 3].y) /
-		abs(ptvCtrlPts[sIndex].y - ptvCtrlPts[sIndex + 3].y);
+		abs(ptvCtrlPts[sIndex].y - ptvCtrlPts[sIndex + 3].y);*/
+
+	////by width diff
+	//float widthDiff = abs(ptvCtrlPts[sIndex].x - ptvCtrlPts[sIndex + 1].x) +
+	//	abs(ptvCtrlPts[sIndex + 1].x - ptvCtrlPts[sIndex + 2].x) +
+	//	abs(ptvCtrlPts[sIndex + 2].x - ptvCtrlPts[sIndex + 3].x) /
+	//	abs(ptvCtrlPts[sIndex].x - ptvCtrlPts[sIndex + 3].x);
 	//std::cout << heightDiff << '\n';
-	float standardValue = 1 + s_fFlatnessEpsilon;
-	if (heightDiff <= standardValue){
+	//std::cout << "standardValue" <<standardValue << '\n';
+	if (heightDiff <= (1 + s_fFlatnessEpsilon)){
+		//std::cout << v0Tov1dist << ' ' << v1Tov2dist << ' ' << v2Tov3dist << ' ' << v0Tov3dist << '\n';
 		float x, y;
 		x = (ptvCtrlPts[sIndex + 1].x + ptvCtrlPts[sIndex + 2].x) / 2;
 		y = (ptvCtrlPts[sIndex + 1].y + ptvCtrlPts[sIndex + 2].y) / 2;
@@ -35,7 +66,7 @@ void BezierCurveEvaluator::displayBezier(const std::vector<Point>& ptvCtrlPts, s
 	}
 	//do something smart
 	else{
-		float u = 0.2;	//leave for further declaration of u(ratio)
+		float u = 0.5;	//leave for further declaration of u(ratio)
 		std::vector<Point> subPointsVector = subdivide(ptvCtrlPts, ptvEvaluatedCurvePts, sIndex, u);
 		//left side
 		displayBezier(subPointsVector, ptvEvaluatedCurvePts, 0);
@@ -72,4 +103,9 @@ Point calculateIntermidate(Point p0, Point p1, float u){
 	x = p0.x*u + p1.x*(1-u);
 	y = p0.y*u + p1.y*(1-u);
 	return Point(x, y);
+}
+
+float findDistance(Point p0, Point p1){
+	//std::cout << p0.x << ' ' << p0.y << ' ' << p1.x << ' ' << p1.y << '\n';
+	return sqrt((p0.x - p1.x)*(p0.x - p1.x) + (p0.y - p1.y)*(p0.y - p1.y));
 }
