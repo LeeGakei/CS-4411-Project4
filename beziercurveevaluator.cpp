@@ -26,7 +26,7 @@ void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 		//not wrapping, liear at the begin and end pts
 		if (iCtrlPtCount >= 4){
 			for (int i = 0; iCtrlPtCount - (i + 1) >= 3; i += 3){
-				// de Castaljau’s algorithm
+				// de Castaljau¡¯s algorithm
 				displayBezier(ptvCtrlPts, ptvEvaluatedCurvePts, i);
 			}
 		}
@@ -46,7 +46,7 @@ void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 				for (int i = 0; iCtrlPtCount - (i + 1) >= 3; i += 3){
 					if (i == 3)
 						;
-					// de Castaljau’s algorithm
+					// de Castaljau¡¯s algorithm
 					displayBezier(tempPts, ptvEvaluatedCurvePts, i, fAniLength);
 				}
 			}
@@ -78,7 +78,7 @@ void BezierCurveEvaluator::evaluateCurve(const std::vector<Point>& ptvCtrlPts,
 
 			 if (iCtrlPtCount >= 4){
 				 for (int i = 0; iCtrlPtCount - (i + 1) >= 3; i += 3){
-					 // de Castaljau’s algorithm
+					 // de Castaljau¡¯s algorithm
 					 displayBezier(ptvCtrlPts, ptvEvaluatedCurvePts, i, fAniLength);
 				 }
 			 }
