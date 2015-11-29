@@ -1,0 +1,46 @@
+﻿生成启动时间为 11/30/2015 5:53:34 AM。
+     1>项目“C:\Users\lionel233\Desktop\CS-4411-Project4\trunk\Animator.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Ilocal/include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D SAMPLE_SOLUTION /D _VC80_UPGRADE=0x0600 /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo".\Debug/" /Fd".\Debug/vc120.pdb" /FR".\Debug\\" /Gd /TP /analyze- /errorReport:prompt sample.cpp
+         sample.cpp
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\particlesystem.h(126): warning C4018: “<”: 有符号/无符号不匹配
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(272): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(273): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(274): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(281): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(282): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(283): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(298): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(303): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(306): warning C4305: “参数”: 从“double”到“float”截断
+     1>c:\users\lionel233\desktop\cs-4411-project4\trunk\sample.cpp(307): warning C4305: “参数”: 从“double”到“float”截断
+       Link:
+         D:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\modeler.exe" /INCREMENTAL /NOLOGO opengl32.lib glu32.lib wsock32.lib local/lib/fltk.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libcmt /NODEFAULTLIB:libcmtb /NODEFAULTLIB:msvcrt /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:".\Debug/Animator.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:".\Debug\modeler.lib" /MACHINE:X86 /SAFESEH /SAFESEH:No .\Debug/beziercurveevaluator.obj
+         .\Debug/bsplinecurveevaluator.obj
+         .\Debug/curve.obj
+         .\Debug/curveevaluator.obj
+         .\Debug/linearcurveevaluator.obj
+         .\Debug/camera.obj
+         .\Debug/modelerapp.obj
+         .\Debug/modelerdraw.obj
+         .\Debug/modelerui.obj
+         .\Debug/modeleruiwindows.obj
+         .\Debug/modelerview.obj
+         .\Debug/bitmap.obj
+         .\Debug/particle.obj
+         .\Debug/particleSystem.obj
+         .\Debug/point.obj
+         .\Debug/pointObj.obj
+         .\Debug/graphwidget.obj
+         .\Debug/indicatorwindow.obj
+         .\Debug/rect.obj
+         .\Debug/rulerwindow.obj
+         .\Debug/sample.obj
+         Animator.vcxproj -> C:\Users\lionel233\Desktop\CS-4411-Project4\trunk\.\Debug\modeler.exe
+       BscMake:
+         D:\Program Files\Microsoft Visual Studio 12.0\VC\bin\bscmake.exe /nologo /o".\Debug/Animator.bsc" .\Debug\beziercurveevaluator.sbr .\Debug\bsplinecurveevaluator.sbr .\Debug\curve.sbr .\Debug\curveevaluator.sbr .\Debug\linearcurveevaluator.sbr .\Debug\camera.sbr .\Debug\modelerapp.sbr .\Debug\modelerdraw.sbr .\Debug\modelerui.sbr .\Debug\modeleruiwindows.sbr .\Debug\modelerview.sbr .\Debug\bitmap.sbr .\Debug\particle.sbr .\Debug\particleSystem.sbr .\Debug\point.sbr .\Debug\pointObj.sbr .\Debug\graphwidget.sbr .\Debug\indicatorwindow.sbr .\Debug\rect.sbr .\Debug\rulerwindow.sbr .\Debug\sample.sbr
+     1>已完成生成项目“C:\Users\lionel233\Desktop\CS-4411-Project4\trunk\Animator.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.77

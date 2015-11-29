@@ -17,8 +17,10 @@
 #define __PARTICLE_SYSTEM_H__
 
 #include "vec.h"
+#include "particle.h"
+#include<vector>
 
-
+class CacheStructure;
 
 class ParticleSystem {
 
@@ -62,7 +64,9 @@ public:
 	// of baked particles (without leaking memory).
 	virtual void clearBaked();	
 
+	void applyForce(double fx,double fy,double fz);
 
+	void addParticleStartingAt(double x, double y, double z);
 
 	// These accessor fxns are implemented for you
 	float getBakeStartTime() { return bake_start_time; }
@@ -89,6 +93,40 @@ protected:
 	bool simulate;						// flag for simulation mode
 	bool dirty;							// flag for updating ui (don't worry about this)
 
+	int startSize = 10;					//The initial size of particles when emitted
+	double positionDeviation = 1;		//start point deviation range
+	double emissionRate = 20;			//particles emitted per second
+	int maxParticles = 100;
+	double lifetime = 3;				//lifetime of particle
+
+	double lastTime = 0;					//the last currTime
+
+	//position
+	double x = 0;
+	double y = 0;
+	double z = 0;
+
+	//force
+	double fx = 0;
+	double fy = 0;					//gravity direction
+	double fz = 0;					//shooting direction
+
+	Particle *p;						//only one particle now
+	vector<Particle*> particleList;
+
+	vector<CacheStructure> cache;
+};
+
+class CacheStructure{
+public :
+	float time;
+	vector<Particle> particleList;
+	CacheStructure(vector<Particle*> list,float t){
+		this->time = t;
+		for (int i = 0; i < list.size(); i++){
+			particleList.push_back(Particle(list[i]));
+		}
+	}
 };
 
 

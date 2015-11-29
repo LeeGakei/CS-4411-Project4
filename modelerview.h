@@ -10,6 +10,7 @@
 #define MODELERVIEW_H
 
 #include <FL/Fl_Gl_Window.H>
+#include "mat.h"
 
 class Camera;
 class ModelerView;
@@ -38,6 +39,7 @@ public:
 	float t;
 	void update();
 	bool save_bmp;
+	Mat4f matrix;
 };
 
 

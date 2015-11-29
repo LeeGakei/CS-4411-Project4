@@ -541,8 +541,10 @@ void ModelerUI::cb_loop(Fl_Light_Button* o, void* v)
 	((ModelerUI*)(o->user_data()))->cb_loop_i(o,v);
 }
 
+//simulate function
 inline void ModelerUI::cb_simulate_i(Fl_Light_Button* o, void*) 
 {
+	simulate(m_pbtSimulate->value());
 }
 
 void ModelerUI::cb_simulate(Fl_Light_Button* o, void* v) 

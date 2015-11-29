@@ -16,6 +16,7 @@ class Mat3 {
 
 	//---[ Private Variable Declarations ]-----------------
 
+public:
 		// matrix elements in row major order
 	T		n[9];
 
@@ -110,7 +111,7 @@ template <class T>
 class Mat4 {
 
 	//---[ Private Variable Declarations ]-----------------
-
+public:
 		// matrix elements in row-major order
 	T		n[16];
 

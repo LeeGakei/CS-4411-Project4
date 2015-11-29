@@ -6,6 +6,7 @@
 #include <FL/gl.h>
 
 #include "modelerglobals.h"
+#include "particleSystem.h"
 
 // To make a SampleModel, we inherit off of ModelerView
 class SampleModel : public ModelerView 
@@ -16,6 +17,8 @@ public:
 
     virtual void draw();
 	void animate();
+	Mat4f getModelViewMatrix();
+	void SpawnParticles(Mat4f cameraTransform);
 
 private:
 	int timer = 0;
@@ -36,6 +39,8 @@ void SampleModel::draw()
     // matrix stuff.  Unless you want to fudge directly with the 
 	// projection matrix, don't bother with this ...
     ModelerView::draw();
+
+	this->matrix = getModelViewMatrix();
 
 	//animation
 	//if (ModelerApplication::Instance()->GetAnimFlag())
@@ -158,6 +163,7 @@ void SampleModel::draw()
 
 			glTranslated(0, 0, VAL(NECK_HEIGHT));
 			drawSphere(0.5);
+			SpawnParticles(this->matrix);
 
 			//3 oars
 			{
@@ -225,6 +231,31 @@ void SampleModel::animate(){
 	SETVAL(OARS_ROTATION, VAL(OARS_ROTATION)+VAL(OARS_SPEED));
 }
 
+Mat4f SampleModel::getModelViewMatrix(){
+	GLfloat m[16];
+	glGetFloatv(GL_MODELVIEW_MATRIX, m);
+	Mat4f matMV(m[0], m[1], m[2], m[3],
+		m[4], m[5], m[6], m[7],
+		m[8], m[9], m[10], m[11],
+		m[12], m[13], m[14], m[15]);
+	return matMV.transpose(); // because the matrix GL returns is column major
+}
+
+void SampleModel::SpawnParticles(Mat4f cameraTransform){
+	Mat4f matrix = this->getModelViewMatrix();
+	Mat4f inverse = cameraTransform.inverse();
+	Mat4f transform = inverse * matrix;
+	Vec4<float> result = transform * Vec4<float>(0,0,0,1);
+
+	double x = result[0] / result[3];
+	double y = result[1] / result[3];
+	double z = result[2] / result[3];
+	std::cout << x << " ";
+	std::cout << y << " ";
+	std::cout << z << " " << "\n";
+	ModelerApplication::Instance()->GetParticleSystem()->addParticleStartingAt(x, y, z);
+}
+
 int main()
 {
 	// Initialize the controls
@@ -284,5 +315,10 @@ int main()
 
 	//initializeTexture();
     ModelerApplication::Instance()->Init(&createSampleModel, controls, NUMCONTROLS);
+
+	//hook up particle system
+	ParticleSystem *ps = new ParticleSystem();
+	ModelerApplication::Instance()->SetParticleSystem(ps);
+
     return ModelerApplication::Instance()->Run();
 }

@@ -105,9 +105,6 @@
     <ClCompile Include="bsplinecurveevaluator.cpp">
       <Filter>Source Files\Curves</Filter>
     </ClCompile>
-    <ClCompile Include="catmullromcurverevaluator.cpp">
-      <Filter>Source Files\Curves</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="curve.h">
