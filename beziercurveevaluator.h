@@ -15,6 +15,7 @@ public:
 		const float& fAniLength,
 		const bool& bWrap) const;
 	virtual void displayBezier(const std::vector<Point>& ptvCtrlPts, std::vector<Point>& ptvEvaluatedCurvePts, int sPoint) const;
+	virtual void displayBezier(const std::vector<Point>& ptvCtrlPts, std::vector<Point>& ptvEvaluatedCurvePts, int sIndex, int fAniLength) const;
 private:
 	
 };
