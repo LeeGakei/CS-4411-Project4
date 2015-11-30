@@ -27,7 +27,7 @@
 #include "LinearCurveEvaluator.h"
 #include "BezierCurveEvaluator.h"
 #include "BSplineCurveEvaluator.h"
-//#include "CatmullRomCurveEvaluator.h"
+#include "CatmullRomCurveEvaluator.h"
 
 
 #define LEFT		1
